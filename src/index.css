@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #22c55e;
+  --color-primary-dim: #16a34a;
+  --color-primary-container: #dcfce7;
+  --color-on-primary-container: #14532d;
+  --color-secondary: #3f6212;
+  --color-surface: #f8f9fa;
+  --color-background: #f8f9fa;
+
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Inter", sans-serif;
+}
+
+@layer utilities {
+  .glass-panel {
+    backdrop-filter: blur(16px);
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scale-98 {
+    transform: scale(0.98);
+  }
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 font-body h-screen overflow-hidden transition-colors duration-200;
+}
+
+/* Custom Scrollbar */
+.style-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.style-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.style-scroll::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 9999px;
+}
+.style-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+
+/* ============================================================
+   GLOBAL DARK MODE & INPUT/TEXT UNIFORMITY
+   ============================================================ */
+
+html.dark body {
+  @apply bg-slate-900 text-slate-100;
+}
+
+/* Ensure inputs, textareas, selects are always crisp and legible in both modes */
+input, textarea, select {
+  @apply transition-colors duration-150;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+textarea,
+select {
+  @apply bg-slate-50 text-slate-900 border-slate-200 placeholder-slate-400 focus:border-primary focus:ring-primary;
+}
+
+html.dark input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+html.dark textarea,
+html.dark select {
+  @apply bg-slate-800 text-slate-100 border-slate-700 placeholder-slate-500 focus:border-primary focus:ring-primary;
+}
+
+/* Background & border overrides for standard components in dark mode */
+html.dark .bg-white {
+  background-color: #1e293b !important; /* slate-800 */
+  border-color: #334155 !important;     /* slate-700 */
+}
+html.dark .bg-slate-50 {
+  background-color: #0f172a !important; /* slate-900 */
+}
+html.dark .bg-slate-100 {
+  background-color: #1e293b !important; /* slate-800 */
+  border-color: #334155 !important;
+}
+html.dark .bg-slate-50\/50 {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+}
+
+/* Text overrides in dark mode */
+html.dark .text-slate-900 {
+  color: #f1f5f9 !important; /* slate-100 */
+}
+html.dark .text-slate-800 {
+  color: #e2e8f0 !important; /* slate-200 */
+}
+html.dark .text-slate-700 {
+  color: #cbd5e1 !important; /* slate-300 */
+}
+html.dark .text-slate-600 {
+  color: #94a3b8 !important; /* slate-400 */
+}
+html.dark .text-slate-500 {
+  color: #94a3b8 !important; /* slate-400 */
+}
+html.dark .text-slate-400 {
+  color: #64748b !important; /* slate-500 */
+}
+
+/* Border overrides in dark mode */
+html.dark .border-slate-100 {
+  border-color: #334155 !important; /* slate-700 */
+}
+html.dark .border-slate-200 {
+  border-color: #334155 !important; /* slate-700 */
+}
+html.dark .border-slate-300 {
+  border-color: #475569 !important; /* slate-600 */
+}
+
+/* Primary container adaptions in dark mode */
+html.dark .bg-primary-container {
+  background-color: rgba(34, 197, 94, 0.15) !important;
+  color: #86efac !important;
+}
+html.dark .text-primary-dim {
+  color: #86efac !important;
+}
+html.dark .text-on-primary-container {
+  color: #86efac !important;
+}
+
+/* Surface token dark mode fallbacks */
+html.dark .text-on-surface {
+  color: #f1f5f9 !important;
+}
+html.dark .text-on-surface-variant {
+  color: #94a3b8 !important;
+}
+html.dark .bg-surface-container-high {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+html.dark .bg-surface-container {
+  background-color: #1e293b !important;
+}
+html.dark .bg-surface-container-low {
+  background-color: #0f172a !important;
+}
+html.dark .bg-surface-container-lowest {
+  background-color: #1e293b !important;
+}
+html.dark .border-outline-variant {
+  border-color: #334155 !important;
+}
+
+html.dark .shadow-\[0_2px_10px_rgba\(0\,0\,0\,0\.02\)\] {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
